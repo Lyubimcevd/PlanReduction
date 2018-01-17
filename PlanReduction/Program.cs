@@ -13,7 +13,6 @@ namespace PlanReduction
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            List<Zakaz> zakazs = FortranReader.GetFortranReader.ReadPlan();
             Application.Run(new Form1());
         }
     }

@@ -39,7 +39,7 @@ namespace PlanReduction
             reader.ReadInt32();
             for (int i = 0; i < lp * 2; i++) reader.ReadInt16();
             reader.ReadInt32();
-            int k = 0;
+
             DataRow tmp;
             while (true)
             {        
@@ -73,53 +73,47 @@ namespace PlanReduction
                 if (reader.BaseStream.Position == reader.BaseStream.Length) break;
                 reader.ReadInt32();
                 for (int i = 0; i < na; i++)
-                    for (int j = 0; j < 26; j++)
-                    {
-                        tmp = zak.Material.NewRow();
-                        tmp[j] = reader.ReadInt16();
-                        zak.Material.Rows.Add(tmp);
-                    }
+                {
+                    tmp = zak.Material.NewRow();
+                    for (int j = 0; j < 26; j++) tmp[j] = reader.ReadInt16();
+                    zak.Material.Rows.Add(tmp);
+                }
                 reader.ReadInt32();
                 reader.ReadInt32();
                 for (int i = 0; i < ns; i++)
-                    for (int j = 0; j < 2; j++)
-                    {
-                        tmp = zak.Sostav.NewRow();
-                        tmp[j] = reader.ReadInt16();
-                        zak.Sostav.Rows.Add(tmp);
-                    }
+                {
+                    tmp = zak.Sostav.NewRow();
+                    for (int j = 0; j < 2; j++) tmp[j] = reader.ReadInt16();
+                    zak.Sostav.Rows.Add(tmp);
+                }
                 for (int i = 0; i < ns; i++)
-                    for (int j = 0; j < 2; j++)
-                    {
-                        tmp = zak.Primen.NewRow();
-                        tmp[j] = reader.ReadInt16();
-                        zak.Primen.Rows.Add(tmp);
-                    }
+                {
+                    tmp = zak.Primen.NewRow();
+                    for (int j = 0; j < 2; j++) tmp[j] = reader.ReadInt16();
+                    zak.Primen.Rows.Add(tmp);
+                }
                 reader.ReadInt32();
                 reader.ReadInt32();
                 for (int i = 0; i < nt; i++)
-                    for (int j = 0; j < 6; j++)
-                    {
-                        tmp = zak.Tehnol.NewRow();
-                        tmp[j] = reader.ReadInt16();
-                        zak.Tehnol.Rows.Add(tmp);
-                    }
+                {
+                    tmp = zak.Tehnol.NewRow();
+                    for (int j = 0; j < 6; j++) tmp[j] = reader.ReadInt16();
+                    zak.Tehnol.Rows.Add(tmp);
+                }
                 for (int i = 0; i < nt; i++)
-                    for (int j = 0; j < 4; j++)
-                    {
-                        tmp = zak.TrudRasc.NewRow();
-                        tmp[j] = reader.ReadInt32();
-                        zak.TrudRasc.Rows.Add(tmp);
-                    }
+                {
+                    tmp = zak.TrudRasc.NewRow();
+                    for (int j = 0; j < 4; j++) tmp[j] = reader.ReadInt32();
+                    zak.TrudRasc.Rows.Add(tmp);
+                }
                 reader.ReadInt32();
                 reader.ReadInt32();
                 for (int i = 0; i < nt; i++)
-                    for (int j = 0; j < 4; j++)
-                    {
-                        tmp = zak.SmenOtch.NewRow();
-                        tmp[j] = reader.ReadInt16();
-                        zak.SmenOtch.Rows.Add(tmp);
-                    }
+                {
+                    tmp = zak.SmenOtch.NewRow();
+                    for (int j = 0; j < 4; j++) tmp[j] = reader.ReadInt16();
+                    zak.SmenOtch.Rows.Add(tmp);
+                }
                 reader.ReadInt32();
                 result.Add(zak);
             }
