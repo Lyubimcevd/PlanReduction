@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("ConsoleApplication2")]
+[assembly: AssemblyTitle("PlanReduction")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NITEL")]
-[assembly: AssemblyProduct("ConsoleApplication2")]
+[assembly: AssemblyProduct("PlanReduction")]
 [assembly: AssemblyCopyright("Copyright © NITEL 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("34555bf7-cad8-4dcc-bf4b-452923742016")]
+[assembly: Guid("bda73c81-d5d1-49f0-9e78-2e9c0fccef90")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

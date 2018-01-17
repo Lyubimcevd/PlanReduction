@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{34555BF7-CAD8-4DCC-BF4B-452923742016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanReduction", "PlanReduction\PlanReduction.csproj", "{BDA73C81-D5D1-49F0-9E78-2E9C0FCCEF90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34555BF7-CAD8-4DCC-BF4B-452923742016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34555BF7-CAD8-4DCC-BF4B-452923742016}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34555BF7-CAD8-4DCC-BF4B-452923742016}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34555BF7-CAD8-4DCC-BF4B-452923742016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA73C81-D5D1-49F0-9E78-2E9C0FCCEF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA73C81-D5D1-49F0-9E78-2E9C0FCCEF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA73C81-D5D1-49F0-9E78-2E9C0FCCEF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA73C81-D5D1-49F0-9E78-2E9C0FCCEF90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

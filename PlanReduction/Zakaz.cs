@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
-namespace ConsoleApplication2
+namespace PlanReduction
 {
     class Zakaz
     {
         string n_zak,n_cherch_instr,n_cherch_det,naim_instr,naim_izd;
+        DataTable IW = new DataTable(),
+
+
         public Zakaz(char[] nxz)
         {
             string str = new string(nxz);
