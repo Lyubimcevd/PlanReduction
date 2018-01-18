@@ -25,7 +25,21 @@ namespace PlanReduction
             foreach (Zakaz zak in zakazs)
                 if (zak.NumberOfZakaz == textBox1.Text)
                 {
-                    dataGridView1.DataSource = zak.Material;
+                    textBox2.Text = zak.NumberOfCherchInstr;
+                    textBox3.Text = zak.NumberOfCherchDet;
+                    textBox4.Text = zak.NaimInstr;
+                    textBox5.Text = zak.KolVZayavke.ToString();
+                    textBox6.Text = zak.Prior.ToString();
+                    textBox7.Text = zak.RashetEdin.ToString();
+                    textBox8.Text = zak.PredpDateVipuska.ToString();
+                    textBox9.Text = zak.RealDateVipuska.ToString();
+                    dataGridView1.DataSource = zak.Sostav;
+                    dataGridView2.DataSource = zak.Primen;
+                    dataGridView3.DataSource = zak.Material;
+                    dataGridView4.DataSource = zak.Tehnol;
+                    dataGridView5.DataSource = zak.TrudRasc;
+                    dataGridView6.DataSource = zak.SmenOtch;
+                    dataGridView7.DataSource = zak.NormaChas;
                 } 
         }
     }

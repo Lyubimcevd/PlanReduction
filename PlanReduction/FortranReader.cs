@@ -27,10 +27,10 @@ namespace PlanReduction
         public List<Zakaz> ReadPlan()
         {
             List<Zakaz> result = new List<Zakaz>();      
-            BinaryReader reader = new BinaryReader(File.Open("D:/u.dat", FileMode.Open));
+            BinaryReader reader = new BinaryReader(File.Open(@"E:\PlanReduction\u.dat", FileMode.Open));
             reader.ReadInt32();
             int nw = reader.ReadInt32(), nu = reader.ReadInt32();
-            reader = new BinaryReader(File.Open("D:/plan.dat", FileMode.Open));
+            reader = new BinaryReader(File.Open(@"E:\PlanReduction\plan.dat", FileMode.Open));
             reader.ReadInt32();
             int lp = reader.ReadInt32(),
                 nn = reader.ReadInt32(),
