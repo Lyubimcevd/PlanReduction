@@ -27,10 +27,10 @@ namespace PlanReduction
         public List<Zakaz> ReadPlan()
         {
             List<Zakaz> result = new List<Zakaz>();      
-            BinaryReader reader = new BinaryReader(File.Open(@"E:\PlanReduction\u.dat", FileMode.Open));
+            BinaryReader reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\u.dat", FileMode.Open));
             reader.ReadInt32();
             int nw = reader.ReadInt32(), nu = reader.ReadInt32();
-            reader = new BinaryReader(File.Open(@"E:\PlanReduction\plan.dat", FileMode.Open));
+            reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\plan.dat", FileMode.Open));
             reader.ReadInt32();
             int lp = reader.ReadInt32(),
                 nn = reader.ReadInt32(),
@@ -48,9 +48,9 @@ namespace PlanReduction
                 for (int i = 0; i < 40; i++)
                 {
                     nxz += Encoding.UTF8.GetString(reader.ReadBytes(2));
-                    if (nxz == "\0\0") break;
+                    if (!Char.IsNumber(nxz[0])) break;
                 }
-                if (nxz == "\0\0") break;
+                if (!Char.IsNumber(nxz[0])) break;
                 Zakaz zak = new Zakaz(nxz);
                 for (int i = 0; i < nu; i++)
                 {
