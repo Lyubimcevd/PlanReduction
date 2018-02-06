@@ -18,6 +18,7 @@ namespace PlanReduction
         {
             InitializeComponent();
             zakazs = FortranReader.GetFortranReader.ReadPlan();
+            label17.Text = "Заказов в плане: " + zakazs.Count;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,6 +42,11 @@ namespace PlanReduction
                     dataGridView6.DataSource = zak.SmenOtch;
                     dataGridView7.DataSource = zak.NormaChas;
                 } 
+        }
+
+        private void textBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) button1_Click(null, null);
         }
     }
 }

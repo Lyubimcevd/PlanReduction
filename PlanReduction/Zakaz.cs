@@ -41,12 +41,12 @@ namespace PlanReduction
             if (list1.Count > 5) naim_izd = list1[5];
 
             norma_chas.Columns.Add();
-            for (int i = 0; i < 26; i++) material.Columns.Add();
-            for (int i = 0; i < 2; i++) sostav.Columns.Add();
-            for (int i = 0; i < 2; i++) primen.Columns.Add();
-            for (int i = 0; i < 6; i++) tehnol.Columns.Add();
-            for (int i = 0; i < 4; i++) trud_rasc.Columns.Add();
-            for (int i = 0; i < 4; i++) smen_otch.Columns.Add();
+            MaterialInit();
+            SostavInit();
+            PrimenInit();
+            TehnolInit();
+            TrudRascInit();
+            SmenOtchInit();
         }
 
         public string NumberOfZakaz
@@ -198,6 +198,60 @@ namespace PlanReduction
             {
                 return smen_otch;
             }
+        }
+
+        void MaterialInit()
+        {
+            material.Columns.Add("Ссылка на строку");
+            material.Columns.Add("№ детали");
+            material.Columns.Add("Материал(1ч)");
+            material.Columns.Add("Материал(2ч)");
+            material.Columns.Add("Материал(3ч)");
+            material.Columns.Add("Длина");
+            material.Columns.Add("Ширина");
+            material.Columns.Add("Толщина");
+            material.Columns.Add("№ марш. карты");
+            material.Columns.Add("Матрица состава");
+            material.Columns.Add("Кол-во строк матрицы состава");
+            material.Columns.Add("Матрица технологий");
+            material.Columns.Add("Кол-во строк матрицы технологий");
+            material.Columns.Add("Матрица применяемости");
+            material.Columns.Add("Кол-во строк матрицы применяемости");
+            material.Columns.Add("Рабочий элемент");
+            material.Columns.Add("№ чертежа(№ заказа)");
+        }
+        void SostavInit()
+        {
+            sostav.Columns.Add("Ссылка на материал");
+            sostav.Columns.Add("Кол-во строк матрицы материалов");
+        }
+        void PrimenInit()
+        {
+            primen.Columns.Add("Ссылка на материал");
+            primen.Columns.Add("Кол-во строк матрицы материалов");
+        }
+        void TehnolInit()
+        {
+            tehnol.Columns.Add("№ ссылки на участок");
+            tehnol.Columns.Add("Шифр оборудования");
+            tehnol.Columns.Add("№ строки матрицы материалов");
+            tehnol.Columns.Add("Относ. день начала операции");
+            tehnol.Columns.Add("День конца операции");
+            tehnol.Columns.Add("День передачи следующему исполнителю");
+        }
+        void TrudRascInit()
+        {
+            trud_rasc.Columns.Add("Трудоёмкость");
+            trud_rasc.Columns.Add("Расценок");
+            trud_rasc.Columns.Add("Рабочий элемент 1");
+            trud_rasc.Columns.Add("Рабочий элемент 2");
+        }
+        void SmenOtchInit()
+        {
+            smen_otch.Columns.Add("День запуска операции");
+            smen_otch.Columns.Add("Отметка выполнения(0-выполнено и фикс день)");
+            smen_otch.Columns.Add("Табельный номер исполнителя");
+            smen_otch.Columns.Add("Рабочий элемент");
         }
     }
 }

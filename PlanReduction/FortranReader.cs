@@ -47,7 +47,7 @@ namespace PlanReduction
                 string nxz = "";
                 for (int i = 0; i < 40; i++)
                 {
-                    nxz += Encoding.UTF8.GetString(reader.ReadBytes(2));
+                    nxz += Encoding.GetEncoding(866).GetString(reader.ReadBytes(2));
                     if (!Char.IsNumber(nxz[0])) break;
                 }
                 if (!Char.IsNumber(nxz[0])) break;
@@ -75,7 +75,9 @@ namespace PlanReduction
                 for (int i = 0; i < na; i++)
                 {
                     tmp = zak.Material.NewRow();
-                    for (int j = 0; j < 26; j++) tmp[j] = reader.ReadInt16();
+                    for (int j = 0; j < 16; j++) tmp[j] = reader.ReadInt16();
+                    tmp[16] = "";
+                    for (int j = 16; j < 26; j++) tmp[16] += Encoding.GetEncoding(866).GetString(reader.ReadBytes(2));
                     zak.Material.Rows.Add(tmp);
                 }
                 reader.ReadInt32();
