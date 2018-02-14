@@ -23,10 +23,10 @@ namespace PlanReduction
             smen_otch = new DataTable();
         int kol_v_zay,
             prior,
-            predp_date_vip,
+            norm_trud,
             rasch_edin,
             date_in_zay,
-            real_date_vip;
+            otnos_srok_vipusk;
 
         public Zakaz(string nxz)
         {
@@ -106,15 +106,15 @@ namespace PlanReduction
                 prior = value;
             }
         }
-        public int PredpDateVipuska
+        public int NormTrud
         {
             get
             {
-                return predp_date_vip;
+                return norm_trud;
             }
             set
             {
-                predp_date_vip = value;
+                norm_trud = value;
             }
         }
         public int RashetEdin
@@ -139,15 +139,15 @@ namespace PlanReduction
                 date_in_zay = value;
             }
         }
-        public int RealDateVipuska
+        public int OtnosSrokVipusk
         {
             get
             {
-                return real_date_vip;
+                return otnos_srok_vipusk;
             }
             set
             {
-                real_date_vip = value;
+                otnos_srok_vipusk = value;
             }
         }
         public DataTable NormaChas
@@ -202,23 +202,21 @@ namespace PlanReduction
 
         void MaterialInit()
         {
-            material.Columns.Add("Ссылка на строку");
-            material.Columns.Add("№ детали");
-            material.Columns.Add("Материал(1ч)");
-            material.Columns.Add("Материал(2ч)");
-            material.Columns.Add("Материал(3ч)");
-            material.Columns.Add("Длина");
-            material.Columns.Add("Ширина");
-            material.Columns.Add("Толщина");
-            material.Columns.Add("№ марш. карты");
-            material.Columns.Add("Матрица состава");
-            material.Columns.Add("Кол-во строк матрицы состава");
-            material.Columns.Add("Матрица технологий");
-            material.Columns.Add("Кол-во строк матрицы технологий");
-            material.Columns.Add("Матрица применяемости");
-            material.Columns.Add("Кол-во строк матрицы применяемости");
-            material.Columns.Add("Рабочий элемент");
-            material.Columns.Add("№ чертежа(№ заказа)");
+            material.Columns.Add("Ссылка на строку");  //1
+            material.Columns.Add("№ детали");  //2
+            material.Columns.Add("Материал(Ном.номер)");  //345
+            material.Columns.Add("Длина");  //6
+            material.Columns.Add("Ширина");  //7
+            material.Columns.Add("Толщина");   //8
+            material.Columns.Add("№ МТК");   //9
+            material.Columns.Add("Матрица состава");  //10
+            material.Columns.Add("Кол-во строк матрицы состава");   //11
+            material.Columns.Add("Матрица технологий");   //12
+            material.Columns.Add("Кол-во строк матрицы технологий");  //13
+            material.Columns.Add("Матрица применяемости");   //14
+            material.Columns.Add("Кол-во строк матрицы применяемости");   //15
+            material.Columns.Add("Рабочий элемент");   //16
+            material.Columns.Add("Обозначение детали");   //17
         }
         void SostavInit()
         {
@@ -232,7 +230,7 @@ namespace PlanReduction
         }
         void TehnolInit()
         {
-            tehnol.Columns.Add("№ ссылки на участок");
+            tehnol.Columns.Add("Ссылка на участок");
             tehnol.Columns.Add("Шифр оборудования");
             tehnol.Columns.Add("№ строки матрицы материалов");
             tehnol.Columns.Add("Относ. день начала операции");
@@ -242,14 +240,14 @@ namespace PlanReduction
         void TrudRascInit()
         {
             trud_rasc.Columns.Add("Трудоёмкость");
-            trud_rasc.Columns.Add("Расценок");
+            trud_rasc.Columns.Add("Расценка");
             trud_rasc.Columns.Add("Рабочий элемент 1");
             trud_rasc.Columns.Add("Рабочий элемент 2");
         }
         void SmenOtchInit()
         {
-            smen_otch.Columns.Add("День запуска операции");
-            smen_otch.Columns.Add("Отметка выполнения(0-выполнено и фикс день)");
+            smen_otch.Columns.Add("Месяц");
+            smen_otch.Columns.Add("Количество");
             smen_otch.Columns.Add("Табельный номер исполнителя");
             smen_otch.Columns.Add("Рабочий элемент");
         }

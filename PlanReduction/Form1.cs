@@ -31,8 +31,8 @@ namespace PlanReduction
                 textBox5.Text = zak.KolVZayavke.ToString();
                 textBox6.Text = zak.Prior.ToString();
                 textBox7.Text = zak.RashetEdin.ToString();
-                textBox8.Text = zak.PredpDateVipuska.ToString();
-                textBox9.Text = zak.RealDateVipuska.ToString();
+                textBox8.Text = zak.NormTrud.ToString();
+                textBox9.Text = zak.OtnosSrokVipusk.ToString();
                 dataGridView1.DataSource = zak.Sostav;
                 dataGridView2.DataSource = zak.Primen;
                 dataGridView3.DataSource = zak.Material;
@@ -56,6 +56,7 @@ namespace PlanReduction
                 listBox1.Items.Clear();
                 zakazs = FortranReader.GetFortranReader.ReadPortfel();
                 label17.Text = "Заказов в портфеле: " + zakazs.Count;
+                label19.Text = "";
                 foreach (Zakaz zk in zakazs) listBox1.Items.Add(zk.NumberOfZakaz);
             }
             else
@@ -63,6 +64,7 @@ namespace PlanReduction
                 listBox1.Items.Clear();
                 zakazs = FortranReader.GetFortranReader.ReadPlan();
                 label17.Text = "Заказов в плане: " + zakazs.Count;
+                label19.Text = FortranReader.GetFortranReader.NN + " - " + FortranReader.GetFortranReader.NK;
                 foreach (Zakaz zk in zakazs) listBox1.Items.Add(zk.NumberOfZakaz);
             }
         }

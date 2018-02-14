@@ -12,7 +12,9 @@ namespace PlanReduction
     class FortranReader
     {
         static FortranReader fortran_reader;
-        
+        int nn, 
+            nk;
+
         FortranReader() { }
 
         public static FortranReader GetFortranReader
@@ -27,15 +29,15 @@ namespace PlanReduction
         public List<Zakaz> ReadPlan()
         {
             List<Zakaz> result = new List<Zakaz>();
-            BinaryReader reader = new BinaryReader(File.Open(@"E:\u.dat", FileMode.Open));
+            BinaryReader reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\u.dat", FileMode.Open));
             reader.ReadInt32();
             int nw = reader.ReadInt32(), nu = reader.ReadInt32();
             reader.Close();
-            reader = new BinaryReader(File.Open(@"E:\plan.dat", FileMode.Open));
+            reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\plan.dat", FileMode.Open));
             reader.ReadInt32();
-            int lp = reader.ReadInt32(),
-                nn = reader.ReadInt32(),
-                nk = reader.ReadInt32();
+            int lp = reader.ReadInt32();
+            nn = reader.ReadInt32();
+            nk = reader.ReadInt32();
             reader.ReadInt32();
             reader.ReadInt32();
             for (int i = 0; i < lp * 2; i++) reader.ReadInt16();
@@ -60,10 +62,10 @@ namespace PlanReduction
                 }
                 zak.KolVZayavke = reader.ReadInt32();
                 zak.Prior = reader.ReadInt32();
-                zak.PredpDateVipuska = reader.ReadInt32();
+                zak.NormTrud = reader.ReadInt32();
                 reader.ReadInt32();
                 zak.RashetEdin = reader.ReadInt32();
-                zak.RealDateVipuska = reader.ReadInt32();
+                zak.OtnosSrokVipusk = reader.ReadInt32();
                 zak.DateInZayavke = reader.ReadInt32();
                 reader.ReadInt32();
                 int na = reader.ReadInt32(),
@@ -72,12 +74,33 @@ namespace PlanReduction
                 reader.ReadInt32();
                 if (reader.BaseStream.Position == reader.BaseStream.Length) break;
                 reader.ReadInt32();
+                int k;
                 for (int i = 0; i < na; i++)
                 {
                     tmp = zak.Material.NewRow();
-                    for (int j = 0; j < 16; j++) tmp[j] = reader.ReadInt16();
-                    tmp[16] = "";
-                    for (int j = 16; j < 26; j++) tmp[16] += Encoding.GetEncoding(866).GetString(reader.ReadBytes(2));
+                    k = 0;
+                    for (int j = 0; j < 16; j++)
+                    {
+                        switch (j)
+                        {
+                            case 2:
+                                tmp[2] = reader.ReadInt16().ToString().PadLeft(2, '0');
+                                break;
+                            case 3:
+                                tmp[2] += reader.ReadInt16().ToString().PadLeft(3, '0');
+                                break;
+                            case 4:
+                                tmp[2] += reader.ReadInt16().ToString().PadLeft(3, '0');
+                                k++;
+                                break;
+                            default:
+                                tmp[k] = reader.ReadInt16();
+                                k++;
+                                break;
+                        }
+                    }
+                    tmp[14] = "";
+                    for (int j = 0; j < 10; j++) tmp[14] += Encoding.GetEncoding(866).GetString(reader.ReadBytes(2));
                     zak.Material.Rows.Add(tmp);
                 }
                 reader.ReadInt32();
@@ -126,11 +149,11 @@ namespace PlanReduction
         public List<Zakaz> ReadPortfel()
         {
             List<Zakaz> result = new List<Zakaz>();
-            BinaryReader reader = new BinaryReader(File.Open(@"E:\u.dat", FileMode.Open));
+            BinaryReader reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\u.dat", FileMode.Open));
             reader.ReadInt32();
             int nw = reader.ReadInt32(), nu = reader.ReadInt32();
             reader.Close();
-            reader = new BinaryReader(File.Open(@"E:\portfel.dat", FileMode.Open));
+            reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\portfel.dat", FileMode.Open));
             DataRow tmp;
             while (true)
             {
@@ -151,7 +174,7 @@ namespace PlanReduction
                 }
                 zak.KolVZayavke = reader.ReadInt32();
                 zak.Prior = reader.ReadInt32();
-                zak.PredpDateVipuska = reader.ReadInt32();
+                zak.OtnosSrokVipusk = reader.ReadInt32();
                 zak.RashetEdin = reader.ReadInt32();
                 zak.DateInZayavke = reader.ReadInt32();
                 int na = reader.ReadInt32(),
@@ -209,6 +232,24 @@ namespace PlanReduction
             }
             reader.Close();
             return result;
+        }
+
+        public string NN
+        {
+            get
+            {
+                string tmp = nn.ToString().PadLeft(8,'0');
+                return tmp.Substring(0,2)+'.'+tmp.Substring(2,2)+'.'+tmp.Substring(4,4);
+            }
+        }
+
+        public string NK
+        {
+            get
+            {
+                string tmp = nk.ToString().PadLeft(8, '0');
+                return tmp.Substring(0, 2) + '.' + tmp.Substring(2, 2) + '.' + tmp.Substring(4, 4);
+            }
         }
     }
 }

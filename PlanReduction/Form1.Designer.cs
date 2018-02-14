@@ -66,6 +66,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
@@ -204,24 +205,24 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(3, 169);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(172, 13);
+            this.label9.Size = new System.Drawing.Size(156, 13);
             this.label9.TabIndex = 14;
-            this.label9.Text = "Предполагаемая дата выпуска: ";
+            this.label9.Text = "Нормативная трудоёмкость: ";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(3, 195);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(134, 13);
+            this.label10.Size = new System.Drawing.Size(166, 13);
             this.label10.TabIndex = 15;
-            this.label10.Text = "Реальная дата выпуска: ";
+            this.label10.Text = "Относительный срок выпуска: ";
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(185, 169);
+            this.textBox8.Location = new System.Drawing.Point(166, 169);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(81, 20);
+            this.textBox8.Size = new System.Drawing.Size(100, 20);
             this.textBox8.TabIndex = 16;
             // 
             // textBox9
@@ -429,11 +430,21 @@
             this.label18.TabIndex = 8;
             this.label18.Text = "Заказы";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(426, 9);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 9;
+            this.label19.Text = "label19";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 489);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.comboBox1);
@@ -498,6 +509,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
     }
 }
 
