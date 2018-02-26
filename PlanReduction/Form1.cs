@@ -25,14 +25,36 @@ namespace PlanReduction
             Zakaz zak = zakazs.FirstOrDefault(x => x.NumberOfZakaz == textBox1.Text);
             if (zak != null)
             {
-                textBox2.Text = zak.NumberOfCherchInstr;
-                textBox3.Text = zak.NumberOfCherchDet;
-                textBox4.Text = zak.NaimInstr;
-                textBox5.Text = zak.KolVZayavke.ToString();
-                textBox6.Text = zak.Prior.ToString();
-                textBox7.Text = zak.RashetEdin.ToString();
-                textBox8.Text = zak.NormTrud.ToString();
-                textBox9.Text = zak.OtnosSrokVipusk.ToString();
+                textBox2.DataBindings.Clear();
+                textBox2.DataBindings.Add("Text", zak, "NomForm");
+                textBox3.DataBindings.Clear();
+                textBox3.DataBindings.Add("Text", zak, "CherchInstr");
+                textBox4.DataBindings.Clear();
+                textBox4.DataBindings.Add("Text", zak, "CherchDet");
+                textBox5.DataBindings.Clear();
+                textBox5.DataBindings.Add("Text", zak, "Naim");
+                textBox6.DataBindings.Clear();
+                textBox6.DataBindings.Add("Text", zak, "NomIzd");
+                textBox7.DataBindings.Clear();
+                textBox7.DataBindings.Add("Text", zak, "CehZak");
+                textBox8.DataBindings.Clear();
+                textBox8.DataBindings.Add("Text", zak, "CehIzgot");
+                textBox9.DataBindings.Clear();
+                textBox9.DataBindings.Add("Text", zak, "KolVZayavke");
+                textBox10.DataBindings.Clear();
+                textBox10.DataBindings.Add("Text", zak, "Prior");
+                textBox11.DataBindings.Clear();
+                textBox11.DataBindings.Add("Text", zak, "NormTrud");
+                textBox12.DataBindings.Clear();
+                textBox12.DataBindings.Add("Text", zak, "LD");
+                textBox13.DataBindings.Clear();
+                textBox13.DataBindings.Add("Text", zak, "RashetEdin");
+                textBox14.DataBindings.Clear();
+                textBox14.DataBindings.Add("Text", zak, "OtnosSrokVipusk");
+                textBox15.DataBindings.Clear();
+                textBox15.DataBindings.Add("Text", zak, "DateInZayavke");
+                textBox16.DataBindings.Clear();
+                textBox16.DataBindings.Add("Text", zak, "MS");
                 dataGridView1.DataSource = zak.Sostav;
                 dataGridView2.DataSource = zak.Primen;
                 dataGridView3.DataSource = zak.Material;
@@ -55,16 +77,16 @@ namespace PlanReduction
             {
                 listBox1.Items.Clear();
                 zakazs = FortranReader.GetFortranReader.ReadPortfel();
-                label17.Text = "Заказов в портфеле: " + zakazs.Count;
-                label19.Text = "";
+                label2.Text = "Заказов в портфеле: " + zakazs.Count;
+                label3.Text = "";
                 foreach (Zakaz zk in zakazs) listBox1.Items.Add(zk.NumberOfZakaz);
             }
             else
             {
                 listBox1.Items.Clear();
                 zakazs = FortranReader.GetFortranReader.ReadPlan();
-                label17.Text = "Заказов в плане: " + zakazs.Count;
-                label19.Text = FortranReader.GetFortranReader.NN + " - " + FortranReader.GetFortranReader.NK;
+                label2.Text = "Заказов в плане: " + zakazs.Count;
+                label3.Text = FortranReader.GetFortranReader.NN + " - " + FortranReader.GetFortranReader.NK;
                 foreach (Zakaz zk in zakazs) listBox1.Items.Add(zk.NumberOfZakaz);
             }
         }
@@ -76,6 +98,11 @@ namespace PlanReduction
                 textBox1.Text = listBox1.SelectedItem.ToString();
                 button1_Click(null, null);
             }                    
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FortranReader.GetFortranReader.SavePlan(zakazs);
         }
     }
 }

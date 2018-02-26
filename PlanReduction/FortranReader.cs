@@ -13,7 +13,11 @@ namespace PlanReduction
     {
         static FortranReader fortran_reader;
         int nn, 
-            nk;
+            nk,
+            nu,
+            nw,
+            lp;
+        List<short> KDP = new List<short>();
 
         FortranReader() { }
 
@@ -31,16 +35,17 @@ namespace PlanReduction
             List<Zakaz> result = new List<Zakaz>();
             BinaryReader reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\u.dat", FileMode.Open));
             reader.ReadInt32();
-            int nw = reader.ReadInt32(), nu = reader.ReadInt32();
+            nw = reader.ReadInt32();
+            nu = reader.ReadInt32();
             reader.Close();
             reader = new BinaryReader(File.Open(@"F:\ASUIPW\tek_INF\plan.dat", FileMode.Open));
             reader.ReadInt32();
-            int lp = reader.ReadInt32();
+            lp = reader.ReadInt32();
             nn = reader.ReadInt32();
             nk = reader.ReadInt32();
             reader.ReadInt32();
             reader.ReadInt32();
-            for (int i = 0; i < lp * 2; i++) reader.ReadInt16();
+            for (int i = 0; i < lp * 2; i++) KDP.Add(reader.ReadInt16());
             reader.ReadInt32();
             DataRow tmp;
             while (true)
@@ -63,17 +68,18 @@ namespace PlanReduction
                 zak.KolVZayavke = reader.ReadInt32();
                 zak.Prior = reader.ReadInt32();
                 zak.NormTrud = reader.ReadInt32();
-                reader.ReadInt32();
+                zak.LD = reader.ReadInt32();
                 zak.RashetEdin = reader.ReadInt32();
                 zak.OtnosSrokVipusk = reader.ReadInt32();
                 zak.DateInZayavke = reader.ReadInt32();
-                reader.ReadInt32();
+                zak.MS = reader.ReadInt32();
                 int na = reader.ReadInt32(),
                     ns = reader.ReadInt32(),
                     nt = reader.ReadInt32();
                 reader.ReadInt32();
                 if (reader.BaseStream.Position == reader.BaseStream.Length) break;
-                reader.ReadInt32();
+                int a = 0;
+                a = reader.ReadInt32();
                 int k;
                 for (int i = 0; i < na; i++)
                 {
@@ -103,7 +109,7 @@ namespace PlanReduction
                     for (int j = 0; j < 10; j++) tmp[14] += Encoding.GetEncoding(866).GetString(reader.ReadBytes(2));
                     zak.Material.Rows.Add(tmp);
                 }
-                reader.ReadInt32();
+                a = reader.ReadInt32();
                 reader.ReadInt32();
                 for (int i = 0; i < ns; i++)
                 {
@@ -242,7 +248,6 @@ namespace PlanReduction
                 return tmp.Substring(0,2)+'.'+tmp.Substring(2,2)+'.'+tmp.Substring(4,4);
             }
         }
-
         public string NK
         {
             get
@@ -250,6 +255,29 @@ namespace PlanReduction
                 string tmp = nk.ToString().PadLeft(8, '0');
                 return tmp.Substring(0, 2) + '.' + tmp.Substring(2, 2) + '.' + tmp.Substring(4, 4);
             }
+        }
+
+        public void SavePlan(List<Zakaz> result)
+        {
+            BinaryWriter writer = new BinaryWriter(File.Open(@"D:\plan.dat", FileMode.OpenOrCreate,FileAccess.Write));
+            writer.Write(12);
+            writer.Write(lp);
+            writer.Write(nn);
+            writer.Write(nk);
+            writer.Write(12);
+            writer.Write(lp*4);
+            foreach (short tmp in KDP) writer.Write(tmp);
+            writer.Write(lp*4);
+            foreach (Zakaz zak in result)
+            {
+                writer.Write(80 + (nu + 11) * 4);
+                writer.Write(zak.NXZ);
+                foreach (DataRow dr in zak.NormaChas.Rows) writer.Write(Convert.ToInt32(dr[0]));
+                writer.Write(80 + (nu + 11) * 4);
+
+
+            }
+            writer.Close();
         }
     }
 }

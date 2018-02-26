@@ -10,10 +10,13 @@ namespace PlanReduction
     class Zakaz
     {
         string n_zak,
-            n_cherch_instr,
-            n_cherch_det,
-            naim_instr,
-            naim_izd;
+            n_form,
+            cherch_instr,
+            cherch_det,
+            naim,
+            nom_izd,
+            ceh_zak,
+            ceh_izgot;
         DataTable norma_chas = new DataTable(),
             material = new DataTable(),
             sostav = new DataTable(),
@@ -26,19 +29,20 @@ namespace PlanReduction
             norm_trud,
             rasch_edin,
             date_in_zay,
-            otnos_srok_vipusk;
+            otnos_srok_vipusk,
+            ld,
+            ms;
 
         public Zakaz(string nxz)
         {
-            string[] mas = nxz.Split(' ');
-            List<string> list1 = new List<string>();
-            foreach (string tmp in mas)
-                if (tmp.Length != 0) list1.Add(tmp);
-            n_zak = list1[0];
-            n_cherch_instr = list1[2];
-            n_cherch_det = list1[3];
-            naim_instr = list1[4];
-            if (list1.Count > 5) naim_izd = list1[5];
+            n_zak = nxz.Substring(0, 18).Trim();
+            n_form = nxz.Substring(18, 2).Trim();
+            cherch_instr = nxz.Substring(20, 20).Trim();
+            cherch_det = nxz.Substring(40, 20).Trim();
+            naim = nxz.Substring(60, 10).Trim();
+            nom_izd = nxz.Substring(70, 4).Trim();
+            ceh_zak = nxz.Substring(74, 4).Trim();
+            ceh_izgot = nxz.Substring(78, 2).Trim();
 
             norma_chas.Columns.Add();
             MaterialInit();
@@ -56,32 +60,81 @@ namespace PlanReduction
                 return n_zak;
             }
         }
-        public string NumberOfCherchInstr
+        public string NomForm
         {
             get
             {
-                return n_cherch_instr;
+                return n_form;
+            }
+            set
+            {
+                n_form = value;
             }
         }
-        public string NumberOfCherchDet
+        public string CherchInstr
         {
             get
             {
-                return n_cherch_det;
+                return cherch_instr;
+            }
+            set
+            {
+                cherch_instr = value;
             }
         }
-        public string NaimInstr
+        public string CherchDet
         {
             get
             {
-                return naim_instr;
+                return cherch_det;
+            }
+            set
+            {
+                cherch_det = value;
             }
         }
-        public string NaimIzd
+        public string Naim
         {
             get
             {
-                return naim_izd;
+                return naim;
+            }
+            set
+            {
+                naim = value;
+            }
+        }
+        public string NomIzd
+        {
+            get
+            {
+                return nom_izd;
+            }
+            set
+            {
+                nom_izd = value;
+            }
+        }
+        public string CehZak
+        {
+            get
+            {
+                return ceh_zak;
+            }
+            set
+            {
+                ceh_zak = value;
+            }
+        }
+        public string CehIzgot
+        {
+            get
+            {
+                return ceh_izgot;
+            }
+            set
+            {
+                ceh_izgot = value;
             }
         }
         public int KolVZayavke
@@ -150,6 +203,28 @@ namespace PlanReduction
                 otnos_srok_vipusk = value;
             }
         }
+        public int LD
+        {
+            get
+            {
+                return ld;
+            }
+            set
+            {
+                ld = value;
+            }
+        }
+        public int MS
+        {
+            get
+            {
+                return ms;
+            }
+            set
+            {
+                ms = value;
+            }
+        }
         public DataTable NormaChas
         {
             get
@@ -197,6 +272,15 @@ namespace PlanReduction
             get
             {
                 return smen_otch;
+            }
+        }
+
+        public string NXZ
+        {
+            get
+            {
+                return NumberOfZakaz.PadRight(18, ' ') + NomForm.PadRight(2, ' ') + CherchInstr.PadRight(20, ' ') + CherchDet.PadRight(20, ' ') + Naim.PadRight(10, ' ')
+                    + NomIzd.PadRight(4, ' ') + CehZak.PadRight(4, ' ') + CehIzgot.PadRight(2, ' ');
             }
         }
 
