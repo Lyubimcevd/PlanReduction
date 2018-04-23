@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 
 namespace PlanReduction
 {
@@ -31,7 +26,10 @@ namespace PlanReduction
             date_in_zay,
             otnos_srok_vipusk,
             ld,
-            ms;
+            ms,
+            na,
+            ns,
+            nt;
 
         public Zakaz(string nxz)
         {
@@ -223,6 +221,39 @@ namespace PlanReduction
             set
             {
                 ms = value;
+            }
+        }
+        public int NA
+        {
+            get
+            {
+                return na;
+            }
+            set
+            {
+                na = value;
+            }
+        }
+        public int NS
+        {
+            get
+            {
+                return ns;
+            }
+            set
+            {
+                ns = value;
+            }
+        }
+        public int NT
+        {
+            get
+            {
+                return nt;
+            }
+            set
+            {
+                nt = value;
             }
         }
         public DataTable NormaChas

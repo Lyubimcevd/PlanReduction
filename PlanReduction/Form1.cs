@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace PlanReduction
 {
@@ -23,7 +18,7 @@ namespace PlanReduction
         private void button1_Click(object sender, EventArgs e)
         {
             Zakaz zak = zakazs.FirstOrDefault(x => x.NumberOfZakaz == textBox1.Text);
-            if (zak != null)
+            if (zak!=null)            
             {
                 textBox2.DataBindings.Clear();
                 textBox2.DataBindings.Add("Text", zak, "NomForm");
@@ -61,7 +56,7 @@ namespace PlanReduction
                 dataGridView4.DataSource = zak.Tehnol;
                 dataGridView5.DataSource = zak.TrudRasc;
                 dataGridView6.DataSource = zak.SmenOtch;
-                dataGridView7.DataSource = zak.NormaChas;
+                dataGridView7.DataSource = zak.NormaChas;               
             }
             else MessageBox.Show("Такого заказа нет");
         }
@@ -77,7 +72,7 @@ namespace PlanReduction
             {
                 listBox1.Items.Clear();
                 zakazs = FortranReader.GetFortranReader.ReadPortfel();
-                label2.Text = "Заказов в портфеле: " + zakazs.Count;
+                label2.Text = "Заказов в портфеле: " + (zakazs.Count-1);
                 label3.Text = "";
                 foreach (Zakaz zk in zakazs) listBox1.Items.Add(zk.NumberOfZakaz);
             }
@@ -102,7 +97,8 @@ namespace PlanReduction
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FortranReader.GetFortranReader.SavePlan(zakazs);
+            if (comboBox1.SelectedItem.ToString() == "Портфель") FortranReader.GetFortranReader.SavePortfel(zakazs);
+            else FortranReader.GetFortranReader.SavePlan(zakazs);
         }
     }
 }
